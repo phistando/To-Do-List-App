@@ -35,7 +35,7 @@ import { TaskService } from './task.service';
      <table class="table-striped">
         <thead>
             <tr>
-                <th>Task completed</th>
+                <th>Tasks completed</th>
               
             </tr>
     
