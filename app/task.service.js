@@ -14,10 +14,15 @@ var TaskService = (function () {
     function TaskService() {
     }
     TaskService.prototype.getTasks = function () {
+        //returns a Promise object that is resolved with the given value (TASKS)
         return Promise.resolve(mock_tasks_1.TASKS);
     };
     TaskService.prototype.addTask = function (task) {
         mock_tasks_1.TASKS.push(task);
+    };
+    TaskService.prototype.removeTask = function (task) {
+        var index = mock_tasks_1.TASKS.indexOf(task);
+        mock_tasks_1.TASKS.splice(index, 1);
     };
     TaskService = __decorate([
         core_1.Injectable(), 

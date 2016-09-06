@@ -35,17 +35,16 @@ import { TaskService } from './task.service';
      <table class="table-striped">
         <thead>
             <tr>
-                <th>Tasks completed</th>
-              
+                <th>Tasks completed</th>  
             </tr>
-    
+
         </thead>
         <tbody>
             <tr *ngFor="let task of tasks">
                 <div *ngIf="task.done">
                 <td>{{task.name}}</td>
-                <br>
-                <td><button class="btn btn-primary" (click)="removeTask(task)">Remove</button></td>
+                
+                <td><button class="btn btn-primary" id="archivesRemoveBtn" (click)="removeTask(task)">Remove</button></td> 
                 </div>   
             </tr>
         </tbody>
@@ -56,20 +55,25 @@ import { TaskService } from './task.service';
         color: green
     }
   `],
-  providers: [TaskService]
+  providers: [TaskService]  
 })
 export class AppComponent {
 
     public tasks = [];
-    public newTask = {done: false};
+    public newTask = {};
 
     constructor(private _taskService: TaskService){}
+    //instantiate this variable _taskService as a new class of object based on the imported TaskService
+    //inject _taskService using type: TaskService   
     
     ngOnInit(){
+    //lifecycle hook - Initialize the directive/component after Angular initializes the data-bound input properties
         this.getTasks();
     }
     
     getTasks(){
+        //then is a method to return a promise
+        //=> arrow function - a shortcut similar to: function(tasks) { this.tasks = tasks }
         this._taskService.getTasks().then(tasks => this.tasks = tasks);
     }   
     
@@ -81,8 +85,9 @@ export class AppComponent {
     }
     
     removeTask(task){
-        let index=this.tasks.indexOf(task);
-        this.tasks.splice(index,1);     
+        if(task){
+            this._taskService.removeTask(task);
+        }   
     }
 
- }
+}

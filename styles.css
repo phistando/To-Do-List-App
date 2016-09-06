@@ -26,3 +26,10 @@ tr {
 td {
     padding: 15px 15px 15px 15px;
 }
+
+#archivesRemoveBtn {
+  
+  left: 300;
+  position: absolute;
+  
+}
